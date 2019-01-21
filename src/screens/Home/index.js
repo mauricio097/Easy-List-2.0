@@ -1,26 +1,20 @@
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
-import {
-    Container,
-    Content,
-    List,
-    ListItem,
-    Icon,
-    Left,
-    Right,
-    Fab,
-    Button
-} from 'native-base';
+import { Container, Content } from 'native-base';
 import Header from '../../components/Header';
+import List from '../../components/List';
 
 export default class Home extends Component {
+
+    static navigationOptions = {
+        header: null //Remove Header from Navigation
+    }
 
     constructor(props) {
         super(props);
 
         this.state = {
             lists: [
-                { id: 1, title: "Lista 1" },
+                { id: 1, title: "Lista 1S" },
                 { id: 2, title: "Lista 2" },
                 { id: 3, title: "Lista 3" }
             ]
@@ -30,25 +24,9 @@ export default class Home extends Component {
     render() {
         return (
             <Container>
-                <Header
-                    iconLeft="menu"
-                    title="Início"
-                />
+                <Header iconLeft="menu" title="Início" />
                 <Content>
-                    <List>
-                        {
-                            this.state.lists.map(item => (
-                                <ListItem key={item.id} noIndent>
-                                    <Left>
-                                        <Text>{item.title}</Text>
-                                    </Left>
-                                    <Right>
-                                        <Icon name="arrow-forward" />
-                                    </Right>
-                                </ListItem>
-                            ))
-                        }
-                    </List>
+                    <List list={this.state.lists} />
                 </Content>
             </Container>
         );
