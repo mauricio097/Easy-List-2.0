@@ -1,5 +1,6 @@
 import React from 'react';
 import { Header, Left, Button, Body, Right, Icon, Title } from 'native-base';
+import { Text } from 'react-native';
 import Colors from '../../styles/Colors';
 import styles from './styles';
 
@@ -25,6 +26,13 @@ export default props => {
           </Button>
         </Right>
         : <Right />}
+
+      {props.textRight ?
+        <Right>
+          <Button hasText transparent onPress={props.rightClick}>
+            <Text style={styles.textIcon}>{props.textRight}</Text>
+          </Button>
+        </Right> : <Right />}
     </Header>
   )
 }

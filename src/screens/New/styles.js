@@ -1,6 +1,5 @@
 import { StyleSheet } from 'react-native';
 import Colors from '../../styles/Colors';
-import { Col } from 'native-base';
 
 const styles = StyleSheet.create({
     bar: {
@@ -10,7 +9,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         borderBottomWidth: 1,
         borderColor: '#c4c3c9',
-        backgroundColor: '#f6f6f6',
+        backgroundColor: '#FFF',
     },
     inputBar: {
         height: 45,
@@ -22,7 +21,23 @@ const styles = StyleSheet.create({
     },
     disableButton: {
         backgroundColor: '#b5b5b5'
+    },
+    buttonFAB:{
+        backgroundColor: Colors.secondary
+    },
+    modalHeader:{
+        flex:1,
+        backgroundColor:'green'
+    },
+    modalContent:{
+        flex:2,
+        backgroundColor:'yellow'
+    },
+    modalFooter:{
+        flex:1,
+        backgroundColor:'red'
     }
+
 });
 
 export default styles;

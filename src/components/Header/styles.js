@@ -4,6 +4,10 @@ import Colors from '../../styles/Colors';
 const styles = StyleSheet.create({
     header: {
         backgroundColor: Colors.primary
+    },
+    textIcon: {
+        color: '#FFF',
+        fontSize: 17
     }
 });
 

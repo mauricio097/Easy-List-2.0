@@ -9,13 +9,13 @@ export default props => (
             props.list.map(item => (
                 <SwipeRow
                     key={item.id}
-                    leftOpenValue={60}
+                    //leftOpenValue={60}
                     rightOpenValue={-60}
-                    left={
+                    /*left={
                         <Button success onPress={() => alert('Add')}>
                             <Icon active name="add" />
                         </Button>
-                    }
+                    }*/
                     body={
                         <View style={styles.item}>
                             <Text style={styles.title}>{item.title}</Text>
