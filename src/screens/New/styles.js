@@ -24,20 +24,7 @@ const styles = StyleSheet.create({
     },
     buttonFAB:{
         backgroundColor: Colors.secondary
-    },
-    modalHeader:{
-        flex:1,
-        backgroundColor:'green'
-    },
-    modalContent:{
-        flex:2,
-        backgroundColor:'yellow'
-    },
-    modalFooter:{
-        flex:1,
-        backgroundColor:'red'
     }
-
 });
 
 export default styles;

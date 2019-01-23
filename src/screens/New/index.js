@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Container, Content, Item, Input, Icon, Button, Fab } from 'native-base';
-import { View, Text } from 'react-native';
+import { Container, Content, Icon, Fab, Picker } from 'native-base';
+import { View, Text, TextInput, TouchableWithoutFeedback } from 'react-native';
 import Header from '../../components/Header';
 import styles from './styles';
 import List from '../../components/List';
-import Modal from "react-native-modal";
+import Window from '../../components/Window';
+
 
 export default class New extends Component {
 
@@ -18,13 +19,7 @@ export default class New extends Component {
         this.state = {
             showModal: false,
             inputBar: '',
-            list: [
-                { id: 1, title: 'Trigo' },
-                { id: 2, title: 'Arroz' },
-                { id: 3, title: 'Feijão' },
-                { id: 4, title: 'Açucar' },
-                { id: 5, title: 'Refrigerante' }
-            ]
+            list: []
         }
     }
 
@@ -32,16 +27,11 @@ export default class New extends Component {
         this.setState({ inputBar: text });
     }
 
-    addItem = () => {
+    addItem = item => {
         let list = [...this.state.list];
-        let item = {
-            id: list.length,
-            title: this.state.inputBar
-        };
-
+        item.id = list.length+1;
         list.push(item);
-
-        this.setState({ list, inputBar: '' });
+        this.setState({ list, inputBar: '',showModal: false });
     }
 
     removeItem = id => {
@@ -58,40 +48,17 @@ export default class New extends Component {
         let disableRule = this.state.inputBar.trim() === '' ? true : false;
         return (
             <Container>
-                <Modal isVisible={this.state.showModal} animationIn='slideInDown' onBackdropPress={() => this.setState({ showModal: false })}>
-                    <View style={{ height: 300, backgroundColor: 'white' }}>
-                        <View style={styles.modalHeader}>
-                            <Text>Novo Item</Text>
-                        </View>
-                        <View style={styles.modalContent}>
-                            <Item rounded>
-                                <Input placeholder="Nome da Lista" style={styles.inputBar}
-                                    onChangeText={this.handleText} value={this.state.inputBar} />
-                            </Item>
-                            <Item rounded>
-                                <Input placeholder="Nome da Lista" style={styles.inputBar}
-                                    onChangeText={this.handleText} value={this.state.inputBar} />
-                            </Item>
-                            <Item rounded>
-                                <Input placeholder="Nome da Lista" style={styles.inputBar}
-                                    onChangeText={this.handleText} value={this.state.inputBar} />
-                            </Item>
-                        </View>
-                        <View style={styles.modalFooter}>
-                            <Text>Cancelar</Text>
-                            <Text>Salvar</Text>
-                        </View>
-                    </View>
-                </Modal>
+                <Window showModal={this.state.showModal} 
+                    onBackdropPress={() => this.setState({ showModal: false})}
+                    onCancelPress={() => this.setState({ showModal: false})}
+                    onSave={this.addItem}  />
                 <Header iconLeft="arrow-back" title="Nova Lista"
                     leftClick={() => this.props.navigation.navigate('Home')}
                     rightClick={() => this.props.navigation.navigate('Home')}
                     textRight='Criar' />
-                <View style={styles.bar}>
-                    <Item regular>
-                        <Input placeholder="Nome da Lista" style={styles.inputBar}
-                            onChangeText={this.handleText} value={this.state.inputBar} />
-                    </Item>
+                <View style={styles.bar}>                    
+                        <TextInput placeholder="Nome da Lista" style={styles.inputBar}
+                            onChangeText={this.handleText} value={this.state.inputBar} />                   
                 </View>
                 <Content>
                     <List list={this.state.list} removeItem={this.removeItem} />
